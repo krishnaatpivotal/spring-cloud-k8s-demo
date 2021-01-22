@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: k8s-boot-probes
+  name: k8s-boot-probes
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+    nodePort: 30008
+  selector:
+    app: k8s-boot-probes
+  type: NodePort
