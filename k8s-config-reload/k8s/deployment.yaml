@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-config-reload
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-config-reload
+  template:
+    metadata:
+      labels:
+        app: k8s-config-reload
+    spec:
+      serviceAccountName: spring-service-account
+      containers:
+      - name: k8s-config-reload
+        image: krishnaktg/k8s-config-reload
+        imagePullPolicy: Always
+#        resources:
+#          requests:
+#            cpu: 0.5
+#            memory: 512Mi
+#          limits:
+#            cpu: 2.0
+#            memory: 1Gi
+        ports:
+        - name: http
+          containerPort: 8080
