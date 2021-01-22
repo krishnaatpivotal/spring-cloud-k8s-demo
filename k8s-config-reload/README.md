@@ -43,7 +43,3 @@ kubectl apply -f config.yaml
 then visit 
 localhost:nodeport/
 it should print the updated value.
-
-Cheers...
-Feel free to email me in case any issue
-asimarunava@googlemail.com
