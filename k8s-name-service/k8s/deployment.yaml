@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: k8s-name-service
+  name: k8s-name-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: k8s-name-service
+  template:
+    metadata:
+      labels:
+        app: k8s-name-service
+    spec:
+      containers:
+      - image: krishnaktg/k8s-name-service
+        name: k8s-name-service
