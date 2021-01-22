@@ -4,13 +4,13 @@ This runs on Nodeport. This is the entry point to k8s Cluster without LB and Ing
 
 # Prerequisite
 Must Have Local K8s Cluster
-Must have Skaffold 
+Skaffold is not a must
 
 
 
 This Repo(usermicro) springboot app is simple application for to see
 * Load Application property file using k8s configMap.
-* Spring Auto refresh the properties value if changes occurs in ConfigMap
+* Spring Auto refreshes the properties value if changes occurs in ConfigMap
 * We need RBAC policy for our springboot app so that it can watch the configMap.
 
 
@@ -20,9 +20,17 @@ This Repo(usermicro) springboot app is simple application for to see
 
 Before deploying the springboot app make sure following yaml files are applied to k8s cluster.
 
-kubectl apply -f rbac.yaml
-kubectl apply -f config.yaml
+kubectl apply -f k8s/rbac.yaml
+kubectl apply -f k8s/config.yaml
 
+# With manual deployment using Service and Deployment
+mvn clean install -DskipTests 
+./mvnw clean spring-boot:build-image
+
+kubectl apply -f k8s/deployment.yaml
+kubectl apply -f k8s/service.yaml
+
+# With Skaffold
 Then run below command
 
 mvn clean install -DskipTests && skaffold run
