@@ -13,6 +13,7 @@ build:
             - pom.xml
 deploy:
   kubectl:
-    manifests: 
+    manifests:
+    - k8s/security.yaml
     - k8s/deployment.yaml
     - k8s/service.yaml
